@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Reiz_2_3
+{
+    class Branch
+    {
+       public List<Branch>branches;
+        public Branch()
+        {
+            branches = new List<Branch>();
+        }
+             
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Reiz_2_3
+{
+    class Program
+    {
+        // Method to calaculate the depth of a given structure taking depth of just the root as 1
+        static int Depth(Branch branch, int rootdepth)
+        {
+            int max = rootdepth;
+            foreach (var b in branch.branches)
+            {
+                int depth = Depth(b, rootdepth + 1);
+                if (depth > max)
+                    max = depth;
+            }
+            return max;
+        }
+        static void Main(string[] args)
+        {
+            //Creating objects of class Branch for creation of the structure
+            Branch root = new Branch();
+            Branch b1 = new Branch();
+            Branch b2 = new Branch();
+            Branch b3 = new Branch();
+            Branch b4 = new Branch();
+            Branch b5 = new Branch();
+            Branch b6 = new Branch();
+            Branch b7 = new Branch();
+            Branch b8 = new Branch();
+            Branch b9 = new Branch();
+            Branch b10 = new Branch();
+            //Creating a structure asked in the question
+            root.branches.Add(b2);
+            b2.branches.Add(b3);
+            root.branches.Add(b1);
+            b1.branches.Add(b7);
+            b7.branches.Add(b4);
+            b1.branches.Add(b6);
+            b6.branches.Add(b9);
+            b6.branches.Add(b10);
+            b10.branches.Add(b5);
+            b1.branches.Add(b8);
+            Console.WriteLine("Depth of the given structure: " + Depth(root, 1));
+        }
+    }
+}
