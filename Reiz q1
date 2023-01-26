@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Reiz1
+{
+    class Program
+    {
+        // Method to find the lesser angle
+        //1min = 6 degrees
+        //Hour hand changes 0.5 degrees for every minute
+        static int FindAngle(int hours, int minutes)
+        {
+            if (hours < 0 || minutes < 0 || hours > 12 || minutes > 60)
+            {
+                Console.WriteLine("Invalid Input");
+                Console.WriteLine("Re - enter hours");
+                int h = int.Parse(Console.ReadLine());
+                Console.WriteLine("Re - enter minutes");
+                int m = int.Parse(Console.ReadLine());
+                hours = h;
+                minutes = m;
+            }
+            if (hours == 12)
+                hours = 0;
+            int a1 = Math.Abs(hours * 5 - minutes) * 6;
+            int a2 = 360 - a1;
+            int ReqAngle = Math.Min(a1, a2);
+            return ReqAngle;
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter hours");
+            int hours = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter minutes");
+            int minutes = int.Parse(Console.ReadLine());
+            Console.WriteLine("The lesser angle between the hour hand and minute hand: {0} degrees",FindAngle(hours, minutes));
+        }
+    }
+}
